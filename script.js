@@ -17,5 +17,21 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-console.log(getComputerChoice());
+//Prompt user to choose an option
+//Check validity of user choice
+//Get user prompt and input in a variable
 
+function getHumanChoice() {
+    let humanChoice = String(prompt("Rock, Paper, or Scissors?", "rock")).toLowerCase();
+
+    if (humanChoice !== "rock"
+        && humanChoice !== "paper"
+        && humanChoice !== "scissors") {
+            alert(`"${humanChoice}" is not a valid answer!\n Restart the page to try again!`);
+    } else {
+        console.log(humanChoice);
+        return humanChoice;
+    }
+}
+
+getHumanChoice();
