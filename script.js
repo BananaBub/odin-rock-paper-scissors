@@ -23,13 +23,11 @@ const scissorsBtn = document.querySelector(".scissors");
 
 let choice;
 
-rockBtn.addEventListener("click", () => choice = "rock");
-paperBtn.addEventListener("click", () => choice = "paper");
-scissorsBtn.addEventListener("click", () => choice = "scissors");
+rockBtn.addEventListener("click", () => roundStatus("rock"));
+paperBtn.addEventListener("click", () => roundStatus("paper"));
+scissorsBtn.addEventListener("click", () => roundStatus("scissors"));
 
 function getHumanChoice() {
-    choice = "";
-
     if (choice !== "rock"
         && choice !== "paper"
         && choice !== "scissors") {
@@ -82,7 +80,9 @@ function checkScore(computerScore, humanScore) {
     }
 }
 
-while (gameStatus === "ongoing") {
+function roundStatus(playerChoice) {
+    choice = playerChoice;
+
     playRound(getComputerChoice, getHumanChoice);
 
     console.log(`You: ${humanScore}`);
