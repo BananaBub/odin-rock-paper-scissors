@@ -55,21 +55,21 @@ function playRound(computerChoice, humanChoice) {
 
     switch (computerChoice()) {
         case "rock":
-            (choice === "rock") ? message.textContent = "Rock vs Rock." :
-            (choice === "paper") ? (message.textContent = "Paper beats Rock.", ++humanScore ):
-            (choice ===  "scissors") ? (message.textContent = "Rock beats Scissors.", ++computerScore) :
+            (choice === "rock") ? message.textContent = "Rock = Rock" :
+            (choice === "paper") ? (message.textContent = "Paper beats Rock", ++humanScore ):
+            (choice ===  "scissors") ? (message.textContent = "Rock beats Scissors", ++computerScore) :
             alert('Your choices are: "rock", "paper", "scissors"!'); 
             break;
         case "paper":
-            (choice === "rock") ? (message.textContent = "Paper beats Rock.", ++computerScore) :
-            (choice === "paper") ? message.textContent = "Paper vs Paper." :
-            (choice === "scissors") ? (message.textContent = "Scissors beat Paper.", ++humanScore) :
+            (choice === "rock") ? (message.textContent = "Paper beats Rock", ++computerScore) :
+            (choice === "paper") ? message.textContent = "Paper = Paper" :
+            (choice === "scissors") ? (message.textContent = "Scissors beat Paper", ++humanScore) :
             alert('Your choices are: "rock", "paper", "scissors"!'); 
             break;
         case "scissors":
-            (choice  === "rock") ? (message.textContent = "Rock beats Scissors.", humanScore++) :
-            (choice === "paper") ? (message.textContent = "Paper beats Rock.", computerScore++) :
-            (choice === "scissors") ? message.textContent = "Scissors vs Scissors." :
+            (choice  === "rock") ? (message.textContent = "Rock beats Scissors", humanScore++) :
+            (choice === "paper") ? (message.textContent = "Paper beats Rock", computerScore++) :
+            (choice === "scissors") ? message.textContent = "Scissors = Scissors" :
             alert('Your choices are: "rock", "paper", "scissors"!'); 
             break;
     }
@@ -78,12 +78,14 @@ function playRound(computerChoice, humanChoice) {
 function checkScore(computerScore, humanScore) {
     if(humanScore === 5) {
         gameStatus = "finished";
-        message.textContent = `You win!\n You: ${humanScore}\n Computer: ${computerScore}`;
-    reloadMessage.textContent = "reload the page to try again";
+        message.textContent = `YOU WIN!`;
+        reloadMessage.textContent = "reload the page to try again";
+        buttonContainer.remove();
     } else if (computerScore === 5) {
         gameStatus = "finished";
-        message.textContent = `You lose!\n You: ${humanScore}\ Computer: ${computerScore}`;
-    reloadMessage.textContent = "reload the page to try again";
+        message.textContent = `YOU LOSE!`;
+        reloadMessage.textContent = "reload the page to try again";
+        buttonContainer.remove();
     } else {
         gameStatus = "ongoing";
     }
