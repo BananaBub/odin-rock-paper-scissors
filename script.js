@@ -17,8 +17,18 @@ function getComputerChoice() {
     return choice;
 }
 
+const rockBtn = document.querySelector(".rock");
+const paperBtn = document.querySelector(".paper");
+const scissorsBtn = document.querySelector(".scissors");
+
+let choice;
+
+rockBtn.addEventListener("click", () => choice = "rock");
+paperBtn.addEventListener("click", () => choice = "paper");
+scissorsBtn.addEventListener("click", () => choice = "scissors");
+
 function getHumanChoice() {
-    let choice = String(prompt("Rock, Paper, or Scissors?", "rock")).toLowerCase();
+    choice = "";
 
     if (choice !== "rock"
         && choice !== "paper"
