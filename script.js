@@ -17,9 +17,16 @@ function getComputerChoice() {
     return choice;
 }
 
+const buttonContainer = document.querySelector(".container");
+buttonContainer.style.cssText = "text-align: center;";
+
 const rockBtn = document.querySelector(".rock");
 const paperBtn = document.querySelector(".paper");
 const scissorsBtn = document.querySelector(".scissors");
+
+const message = document.querySelector(".message");
+const scoreCount = document.querySelector(".scoreCount");
+const reloadMessage = document.querySelector(".reloadMessage");
 
 let choice;
 
@@ -48,21 +55,21 @@ function playRound(computerChoice, humanChoice) {
 
     switch (computerChoice()) {
         case "rock":
-            (choice === "rock") ? console.log("It's a tie! Rock vs Rock.") :
-            (choice === "paper") ? (console.log("You win! Paper beats Rock."), ++humanScore ):
-            (choice ===  "scissors") ? (console.log("You lose! Rock beats Scissors."), ++computerScore) :
+            (choice === "rock") ? message.textContent = "Rock vs Rock." :
+            (choice === "paper") ? (message.textContent = "Paper beats Rock.", ++humanScore ):
+            (choice ===  "scissors") ? (message.textContent = "Rock beats Scissors.", ++computerScore) :
             alert('Your choices are: "rock", "paper", "scissors"!'); 
             break;
         case "paper":
-            (choice === "rock") ? (console.log("You lose!, Paper beats Rock."), ++computerScore) :
-            (choice === "paper") ? console.log("It's a tie! Paper vs Paper.") :
-            (choice === "scissors") ? (console.log("You win! Scissors beat Paper."), ++humanScore) :
+            (choice === "rock") ? (message.textContent = "Paper beats Rock.", ++computerScore) :
+            (choice === "paper") ? message.textContent = "Paper vs Paper." :
+            (choice === "scissors") ? (message.textContent = "Scissors beat Paper.", ++humanScore) :
             alert('Your choices are: "rock", "paper", "scissors"!'); 
             break;
         case "scissors":
-            (choice  === "rock") ? (console.log("You win! Rock beats Scissors."), humanScore++) :
-            (choice === "paper") ? (console.log("You lose! Paper beats Rock."), computerScore++) :
-            (choice === "scissors") ? console.log("It's a tie! Scissors vs Scissors.") :
+            (choice  === "rock") ? (message.textContent = "Rock beats Scissors.", humanScore++) :
+            (choice === "paper") ? (message.textContent = "Paper beats Rock.", computerScore++) :
+            (choice === "scissors") ? message.textContent = "Scissors vs Scissors." :
             alert('Your choices are: "rock", "paper", "scissors"!'); 
             break;
     }
@@ -71,13 +78,17 @@ function playRound(computerChoice, humanChoice) {
 function checkScore(computerScore, humanScore) {
     if(humanScore === 5) {
         gameStatus = "finished";
-        alert(`You win!\n You: ${humanScore}\n Computer: ${computerScore}`);
+        message.textContent = `You win!\n You: ${humanScore}\n Computer: ${computerScore}`;
+    reloadMessage.textContent = "reload the page to try again";
     } else if (computerScore === 5) {
         gameStatus = "finished";
-        alert(`You lose!\n You: ${humanScore}\ Computer: ${computerScore}`);
+        message.textContent = `You lose!\n You: ${humanScore}\ Computer: ${computerScore}`;
+    reloadMessage.textContent = "reload the page to try again";
     } else {
         gameStatus = "ongoing";
     }
+
+    scoreCount.textContent = `You: ${humanScore}\ Computer: ${computerScore}`;
 }
 
 function roundStatus(playerChoice) {
@@ -88,5 +99,5 @@ function roundStatus(playerChoice) {
     console.log(`You: ${humanScore}`);
     console.log(`Computer: ${computerScore}`);
 
-    checkScore(computerScore, humanScore);   
+    checkScore(computerScore, humanScore);  
 }
